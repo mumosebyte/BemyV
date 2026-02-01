@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 24.8.1.2 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="00:00:00"/>
+	<style type="text/css">
+		@page { size: 8.27in 11.69in; margin: 0.79in }
+		p { line-height: 115%; margin-bottom: 0.1in; background: transparent }
+		pre { background: transparent }
+		pre.western { font-family: "Liberation Mono", monospace; font-size: 10pt }
+		pre.cjk { font-family: "NSimSun", monospace; font-size: 10pt }
+		pre.ctl { font-family: "Liberation Mono", monospace; font-size: 10pt }
+	</style>
+</head>
+<body lang="en-US" link="#000080" vlink="#800000" dir="ltr"><pre class="western">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;title&gt;Be My Valentine 💖&lt;/title&gt;
+
+&lt;style&gt;
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        height: 100vh;
+        overflow: hidden;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 420px;
+        background: rgba(255,255,255,0.95);
+        padding: 30px 20px;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        z-index: 5;
+    }
+
+    h1 {
+        color: #e6005c;
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+
+    select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        margin-bottom: 25px;
+    }
+
+    .buttons {
+        position: relative;
+        height: 100px;
+        width: 100%;
+    }
+
+    button {
+        padding: 14px 28px;
+        font-size: 18px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: 0.2s;
+        position: absolute;
+    }
+
+    #yesBtn {
+        background: #ff4d6d;
+        color: white;
+        left: 15%;
+        top: 20px;
+    }
+
+    #noBtn {
+        background: #ccc;
+        color: #333;
+        right: 15%;
+        top: 20px;
+    }
+
+    #message {
+        margin-top: 20px;
+        font-size: 1.3rem;
+        color: #e6005c;
+        display: none;
+    }
+
+    /* Floating heart balloons */
+    .heart {
+        position: absolute;
+        width: 26px;
+        height: 26px;
+        background: red;
+        transform: rotate(45deg);
+        animation: float linear infinite;
+        opacity: 0.6;
+    }
+
+    .heart::before,
+    .heart::after {
+        content: &quot;&quot;;
+        position: absolute;
+        width: 26px;
+        height: 26px;
+        background: red;
+        border-radius: 50%;
+    }
+
+    .heart::before {
+        top: -13px;
+        left: 0;
+    }
+
+    .heart::after {
+        left: -13px;
+        top: 0;
+    }
+
+    @keyframes float {
+        from {
+            bottom: -50px;
+            transform: translateX(0) rotate(45deg);
+        }
+        to {
+            bottom: 110%;
+            transform: translateX(80px) rotate(45deg);
+        }
+    }
+
+    /* Mobile tweaks */
+    @media (max-width: 480px) {
+        h1 {
+            font-size: 1.5rem;
+        }
+
+        button {
+            font-size: 16px;
+            padding: 12px 22px;
+        }
+    }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class=&quot;container&quot;&gt;
+    &lt;h1 id=&quot;question&quot;&gt;Will you be my Valentine, Gijon? 💘&lt;/h1&gt;
+
+    &lt;select id=&quot;nameSelect&quot; onchange=&quot;updateName()&quot;&gt;
+        &lt;option value=&quot;Gijon&quot;&gt;Gijon&lt;/option&gt;
+        &lt;option value=&quot;Digga&quot;&gt;Digga&lt;/option&gt;
+        &lt;option value=&quot;Bophelo&quot;&gt;Bophelo&lt;/option&gt;
+    &lt;/select&gt;
+
+    &lt;div class=&quot;buttons&quot;&gt;
+        &lt;button id=&quot;yesBtn&quot; onclick=&quot;sayYes()&quot;&gt;Yes 💖&lt;/button&gt;
+        &lt;button id=&quot;noBtn&quot;
+            onclick=&quot;escapeNo()&quot;
+            ontouchstart=&quot;escapeNo()&quot;&gt;No 🙃&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;div id=&quot;message&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    function updateName() {
+        const name = document.getElementById(&quot;nameSelect&quot;).value;
+        document.getElementById(&quot;question&quot;).innerText =
+            `Will you be my Valentine, ${name}? 💘`;
+    }
+
+    function escapeNo() {
+        const noBtn = document.getElementById(&quot;noBtn&quot;);
+
+        const padding = 20;
+        const btnWidth = noBtn.offsetWidth;
+        const btnHeight = noBtn.offsetHeight;
+
+        const maxX = window.innerWidth - btnWidth - padding;
+        const maxY = window.innerHeight - btnHeight - padding;
+
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+
+        noBtn.style.left = x + &quot;px&quot;;
+        noBtn.style.top = y + &quot;px&quot;;
+
+        alert(&quot;😏 Are you sure? Try pressing YES!&quot;);
+    }
+
+    function sayYes() {
+        document.getElementById(&quot;message&quot;).style.display = &quot;block&quot;;
+        document.getElementById(&quot;message&quot;).innerHTML =
+            &quot;💖 I knew you would say YES!&lt;br&gt;I also knew you wouldn’t press the NO button 😄&quot;;
+    }
+
+    // Floating hearts generator
+    for (let i = 0; i &lt; 14; i++) {
+        const heart = document.createElement(&quot;div&quot;);
+        heart.className = &quot;heart&quot;;
+        heart.style.left = Math.random() * 100 + &quot;vw&quot;;
+        heart.style.animationDuration = (6 + Math.random() * 6) + &quot;s&quot;;
+        heart.style.opacity = Math.random();
+        document.body.appendChild(heart);
+    }
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+</body>
+</html>
